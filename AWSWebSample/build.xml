@@ -1,0 +1,42 @@
+<project name="pcs" default="lib" basedir=".">
+  <description>pcs</description>
+
+  <property name="version" value="1.0"/>
+  <property name="src" location="src"/>
+  <property name="dvl" location="."/>
+  <property name="stage" location="../stage"/>
+  <property name="build" location="${stage}/build"/>
+  <property name="dist" location="${stage}/dist"/>
+  <property name="lib" location="lib"/>
+  <property name="doc" location="doc"/>
+
+  <path id="project.classpath">
+   <fileset dir="web/WEB-INF/lib">
+      <include name="*.jar"/>
+     </fileset>
+  </path>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="clean,init">
+    <javac includeantruntime="false" srcdir="${src}" destdir="${build}" source="7" debug="on">
+      <classpath refid="project.classpath"/>
+    </javac>
+  </target>
+
+  <target name="lib" depends="compile">
+    <jar destfile="${stage}/pcs.jar" basedir="${build}">
+     <zipgroupfileset dir="web/WEB-INF/lib" includes="*.jar"/>
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete dir="${stage}/doc"/>
+    <delete file="${stage}/pcs.jar"/>
+  </target>
+</project>

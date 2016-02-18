@@ -1,0 +1,24 @@
+<project name="pcs Dev Deploy" default="deploy" basedir=".">
+	<description>umaa Dev Deploy</description>
+
+	<property name="stage" location="../stage"/>
+	<property name="jarfilename" value="pcs.jar"/>
+	
+	<target name="deploy">
+		<echo message="stage = ${stage}" />
+		<echo message="jarfile = ${jarfilename}" />
+				
+		<scp file="${stage}/${jarfilename}" todir="${user}@${remote}:."  keyfile="${keyfile}" trust="true"/>
+		<sshexec host="${remote}"
+				username="${user}"
+				keyfile="${keyfile}"
+				trust="true"
+				command="sudo cp ${jarfilename} /var/lib/tomcat7/webapps/ROOT/WEB-INF/lib" />
+		
+		<sshexec host="${remote}"
+						username="${user}"
+						keyfile="${keyfile}"
+						trust="true"
+						command="(sudo service tomcat7 stop;sudo service tomcat7 start;)"/>
+	</target>
+</project>
