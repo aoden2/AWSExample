@@ -15,6 +15,11 @@ public class UserDao extends AbstractDAO<User, String, Serializable> implements
 	public Class<User> getClazz() {
 		return User.class;
 	}
+	
+	public void resetPwd(User user, String newPwd) throws Exception {
+		user.setPassword(newPwd);
+		save(user);
+	}
 
 	/**
 	 * get User by Email

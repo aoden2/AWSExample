@@ -1,6 +1,21 @@
 'use strict';
 var myApp = angular.module('myApp', []);
 
+myApp.controller("forgotPwdCtrl", ['$scope', '$http', function ($scope, $http) {
+
+    $scope.login = function () {
+
+        $http({
+            method: 'POST',
+            url: 'reset',
+            data: $.param({email: $scope.email}),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function (resp) {
+            alert(resp)
+        });
+    }
+}]);
+
 myApp.controller("signupCtrl", ['$scope', '$http', function ($scope, $http) {
 
     $scope.signup = function () {

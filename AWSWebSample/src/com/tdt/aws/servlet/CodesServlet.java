@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
 import com.tdt.aws.dao.CodeDAO;
@@ -43,7 +44,7 @@ public class CodesServlet extends HttpServlet {
 		JSONObject codesJSON = new JSONObject();
 		JSONObject codeJSON =  new JSONObject();
 	    
-		if(category.isEmpty()) {
+		if(StringUtils.isEmpty(category)) {
 			// first get all codes from table
 			codeList = dao.getAll();
 		} else {

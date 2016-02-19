@@ -3,11 +3,9 @@ package com.tdt.aws.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.json.JSONObject;
 
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
